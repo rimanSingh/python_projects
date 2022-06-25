@@ -5,7 +5,48 @@ Build a library inventory desktop GUI Detabase App
 from tkinter import *
 import GUI_backend
 
+def view_data():
+    list.delete(0, END)
+    for row in GUI_backend.view():
+        list.insert(END, row)
+
+def search_data():
+    list.delete(0, END)
+    for row in GUI_backend.search(title_v_value.get(), 
+    author_v_value.get(), year_v_value.get(), isbn_v_value.get()):
+        list.insert(END, row)
+
+def add_data():
+    GUI_backend.insert(title_v_value.get(), 
+    author_v_value.get(), year_v_value.get(), isbn_v_value.get())
+    list.delete(0, END)
+    list.insert(END, (title_v_value.get(), 
+    author_v_value.get(), year_v_value.get(), isbn_v_value.get()))
+
+def delete_data():
+    GUI_backend.delete(selected_tuples[0])
+
+def update_data():
+    GUI_backend.update(selected_tuples[0],title_v_value.get(), 
+    author_v_value.get(), year_v_value.get(), isbn_v_value.get())
+
+def selected_row(event):
+    global selected_tuples
+    index = list.curselection()[0]
+    selected_tuples = list.get(index)
+    title_value.delete(0,END)
+    title_value.insert(END, selected_tuples[1])
+    author_value.delete(0,END)
+    author_value.insert(END, selected_tuples[2])
+    year_value.delete(0,END)
+    year_value.insert(END, selected_tuples[3])
+    isbn_value.delete(0,END)
+    isbn_value.insert(END, selected_tuples[4])
+
+
+
 window = Tk()
+window.wm_title("Library View")
 
 title=Label(window, text="Title")
 title.grid(row=0, column=0)
@@ -44,22 +85,24 @@ scrollbar.grid(row=2, column=2, rowspan=9)
 list.configure(yscrollcommand=scrollbar.set)
 scrollbar.configure(command=list.yview)
 
-btn_add = Button(window, text="Add", width=12)
+list.bind('<<ListboxSelect>>', selected_row)
+
+btn_add = Button(window, text="Add", width=12, command=add_data)
 btn_add.grid(row=2, column=3)
 
-btn_update = Button(window, text="Update", width=12)
+btn_update = Button(window, text="Update", width=12, command=update_data)
 btn_update.grid(row=3, column=3)
 
-btn_view = Button(window, text="View", width=12)
+btn_view = Button(window, text="View", width=12, command=view_data)
 btn_view.grid(row=4, column=3)
 
-btn_search = Button(window, text="Search", width=12)
+btn_search = Button(window, text="Search", width=12, command=search_data)
 btn_search.grid(row=5, column=3)
 
-btn_delete = Button(window, text="Delete", width=12)
+btn_delete = Button(window, text="Delete", width=12, command=delete_data)
 btn_delete.grid(row=6, column=3)
 
-btn_close = Button(window, text="Close", width=12)
+btn_close = Button(window, text="Close", width=12, command=window.destroy)
 btn_close.grid(row=7, column=3)
 
 window.mainloop()

@@ -50,12 +50,12 @@ def update(id, title, author, year, isbn):
 
 dbconnect()
 
-insert("The Progmatic Programmer", "David Thomas", 2009, 302348391)
-print("How many entries in a table: ",view())
+# insert("The Progmatic Programmer", "David Thomas", 2009, 302348391)
+# print("How many entries in a table: ",view())
 # delete(1)
-print("\n")
+# print("\n")
 # update(2,"","Harish Sharma", 1980, 939485)
-# print("Searched entry: ", search(author="Manish"))
+# print("Searched entry: ", search(author="David Thomas"))
 # print("\n")
 # print("How many entries do we have in a table now: ",view())
 print("\n")
