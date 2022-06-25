@@ -31,17 +31,20 @@ def update_data():
     author_v_value.get(), year_v_value.get(), isbn_v_value.get())
 
 def selected_row(event):
-    global selected_tuples
-    index = list.curselection()[0]
-    selected_tuples = list.get(index)
-    title_value.delete(0,END)
-    title_value.insert(END, selected_tuples[1])
-    author_value.delete(0,END)
-    author_value.insert(END, selected_tuples[2])
-    year_value.delete(0,END)
-    year_value.insert(END, selected_tuples[3])
-    isbn_value.delete(0,END)
-    isbn_value.insert(END, selected_tuples[4])
+    try:
+        global selected_tuples
+        index = list.curselection()[0]
+        selected_tuples = list.get(index)
+        title_value.delete(0,END)
+        title_value.insert(END, selected_tuples[1])
+        author_value.delete(0,END)
+        author_value.insert(END, selected_tuples[2])
+        year_value.delete(0,END)
+        year_value.insert(END, selected_tuples[3])
+        isbn_value.delete(0,END)
+        isbn_value.insert(END, selected_tuples[4])
+    except IndexError:
+        pass
 
 
 
