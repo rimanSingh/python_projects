@@ -3,32 +3,32 @@ Build a library inventory desktop GUI Detabase App
 """
 
 from tkinter import *
-import GUI_backend
+from GUI_backend import Database
+
+database = Database()
 
 def view_data():
     list.delete(0, END)
-    for row in GUI_backend.view():
+    for row in database.view():
         list.insert(END, row)
 
 def search_data():
     list.delete(0, END)
-    for row in GUI_backend.search(title_v_value.get(), 
-    author_v_value.get(), year_v_value.get(), isbn_v_value.get()):
+    for row in database.search(title_v_value.get(), author_v_value.get(), year_v_value.get(), isbn_v_value.get()):
         list.insert(END, row)
 
 def add_data():
-    GUI_backend.insert(title_v_value.get(), 
+    database.insert(title_v_value.get(), 
     author_v_value.get(), year_v_value.get(), isbn_v_value.get())
     list.delete(0, END)
     list.insert(END, (title_v_value.get(), 
     author_v_value.get(), year_v_value.get(), isbn_v_value.get()))
 
 def delete_data():
-    GUI_backend.delete(selected_tuples[0])
+    database.delete(selected_tuples[0])
 
 def update_data():
-    GUI_backend.update(selected_tuples[0],title_v_value.get(), 
-    author_v_value.get(), year_v_value.get(), isbn_v_value.get())
+    database.update(selected_tuples[0],title_v_value.get(), author_v_value.get(), year_v_value.get(), isbn_v_value.get())
 
 def selected_row(event):
     try:
