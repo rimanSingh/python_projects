@@ -47,7 +47,6 @@ def selected_row(event):
         pass
 
 
-
 window = Tk()
 window.wm_title("Library View")
 
