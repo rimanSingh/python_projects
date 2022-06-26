@@ -15,17 +15,22 @@
                 <p>Connects with friends and the world around you on Facebook.</p>
             </div>
          </section>
-
+        
          <section class="right">
             <div class="form_container">
-                <form action="success.html" method="POST" class="loginForm">
+                <div class="message">
+                    {{text | safe}}
+                </div>
+                <form action="{{url_for('success')}}" method="POST" class="loginForm">
                     <input type="email" class="form_group" placeholder="Email" name="email_name" required>
-                    <input type="password" class="form_group" placeholder="Password" name="password_name" min="8" required>
+                    <input type="password" class="form_group" placeholder="Password" name="password_name" required>
                     <button type="submit" class="btn">Log In</button>
-            
+                </form>
                     <p class="textLink"><a href="">Forgotten password?</a></p>
                     <hr>
+                <form action="#" method="POST" class="loginForm">
                     <button type="submit" class="btn1">Create New Account</button>
+                </form>
                 </form>
             </div>
         </section>
